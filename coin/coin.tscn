@@ -1,0 +1,36 @@
+[gd_scene load_steps=15 format=3 uid="uid://ccxfcthtx420v"]
+
+[ext_resource type="Texture2D" uid="uid://ql6hmpu78i0l" path="res://coin/textures/coin_frame_1.png" id="1_j3df7"]
+[ext_resource type="Script" path="res://coin/coin.gd" id="1_v0v5e"]
+[ext_resource type="Texture2D" uid="uid://dikjwaefwh0p0" path="res://coin/textures/coin_frame_2.png" id="2_h2ijh"]
+[ext_resource type="Texture2D" uid="uid://c5uydllqymgki" path="res://coin/textures/coin_frame_3.png" id="3_2c4ro"]
+[ext_resource type="Texture2D" uid="uid://jqgenwuv2vio" path="res://coin/textures/coin_frame_4.png" id="4_ok0xt"]
+[ext_resource type="Texture2D" uid="uid://rjx35pf2b85x" path="res://coin/textures/coin_frame_5.png" id="5_cbpdo"]
+[ext_resource type="Texture2D" uid="uid://rqj8ey256wrs" path="res://coin/textures/coin_frame_6.png" id="6_vdh36"]
+[ext_resource type="Texture2D" uid="uid://v2d24rn2og6" path="res://coin/textures/coin_frame_7.png" id="7_uqhsj"]
+[ext_resource type="Texture2D" uid="uid://c30r1q4rxmfqa" path="res://coin/textures/coin_frame_8.png" id="8_bjs12"]
+[ext_resource type="Texture2D" uid="uid://c5v3dc185c2k7" path="res://coin/textures/coin_frame_9.png" id="9_5ojum"]
+[ext_resource type="Texture2D" uid="uid://bw2b6nrhji0pc" path="res://coin/textures/coin_frame_10.png" id="10_dtwu0"]
+[ext_resource type="Texture2D" uid="uid://7o5g8nntydg" path="res://coin/textures/coin_frame_11.png" id="11_hetpp"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gsa6h"]
+animations = [{
+"frames": [ExtResource("1_j3df7"), ExtResource("2_h2ijh"), ExtResource("3_2c4ro"), ExtResource("4_ok0xt"), ExtResource("5_cbpdo"), ExtResource("6_vdh36"), ExtResource("7_uqhsj"), ExtResource("8_bjs12"), ExtResource("9_5ojum"), ExtResource("10_dtwu0"), ExtResource("11_hetpp")],
+"loop": true,
+"name": &"shine",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r25h5"]
+radius = 24.0208
+
+[node name="Coin" type="Area2D" groups=["coins"]]
+script = ExtResource("1_v0v5e")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+frames = SubResource("SpriteFrames_gsa6h")
+animation = &"shine"
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_r25h5")
