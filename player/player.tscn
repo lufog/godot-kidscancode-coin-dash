@@ -33,7 +33,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g304r"]
-size = Vector2(16, 22)
+size = Vector2(32, 44)
 
 [node name="Player" type="Area2D"]
 script = ExtResource("1_wi6ol")
@@ -41,6 +41,7 @@ speed = null
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
 frames = SubResource("SpriteFrames_yevu2")
 animation = &"idle"
 offset = Vector2(0, -5)
