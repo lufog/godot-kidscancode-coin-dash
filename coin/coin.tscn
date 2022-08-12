@@ -13,10 +13,10 @@
 [ext_resource type="Texture2D" uid="uid://bw2b6nrhji0pc" path="res://coin/textures/coin_frame_10.png" id="10_dtwu0"]
 [ext_resource type="Texture2D" uid="uid://7o5g8nntydg" path="res://coin/textures/coin_frame_11.png" id="11_hetpp"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_gsa6h"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_jej0f"]
 animations = [{
 "frames": [ExtResource("1_j3df7"), ExtResource("2_h2ijh"), ExtResource("3_2c4ro"), ExtResource("4_ok0xt"), ExtResource("5_cbpdo"), ExtResource("6_vdh36"), ExtResource("7_uqhsj"), ExtResource("8_bjs12"), ExtResource("9_5ojum"), ExtResource("10_dtwu0"), ExtResource("11_hetpp")],
-"loop": true,
+"loop": false,
 "name": &"shine",
 "speed": 12.0
 }]
@@ -29,8 +29,13 @@ script = ExtResource("1_v0v5e")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
-frames = SubResource("SpriteFrames_gsa6h")
+frames = SubResource("SpriteFrames_jej0f")
 animation = &"shine"
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_r25h5")
+
+[node name="ShineTimer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="ShineTimer" to="." method="_on_shine_timer_timeout"]

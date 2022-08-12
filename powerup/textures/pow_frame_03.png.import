@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ca1j13lq8hgbd"
-path="res://.godot/imported/pow-frame-6.png-abfeadc9e1245f1fbf5023846478c30a.ctex"
+uid="uid://dj2shv1bkmy6a"
+path="res://.godot/imported/pow_frame_03.png-b5cfb16656d690dbf8e5b379427bb124.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/_sort/pow/pow-frame-6.png"
-dest_files=["res://.godot/imported/pow-frame-6.png-abfeadc9e1245f1fbf5023846478c30a.ctex"]
+source_file="res://powerup/textures/pow_frame_03.png"
+dest_files=["res://.godot/imported/pow_frame_03.png-b5cfb16656d690dbf8e5b379427bb124.ctex"]
 
 [params]
 

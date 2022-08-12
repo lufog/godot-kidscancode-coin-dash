@@ -1,4 +1,4 @@
-class_name Coin
+class_name Powerup
 extends Area2D
 
 
@@ -9,7 +9,7 @@ var screen_size: Vector2
 
 
 func _ready() -> void:
-	shine_timer.wait_time = randf_range(3, 8)
+	shine_timer.wait_time = randf_range(1, 2)
 	shine_timer.start()
 
 
@@ -22,6 +22,10 @@ func pickup() -> void:
 			.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 	
 	await tween.finished
+	queue_free()
+
+
+func _on_lifetime_timer_timeout() -> void:
 	queue_free()
 
 

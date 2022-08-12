@@ -1,8 +1,10 @@
 extends Node
 
 
-@export var coin_scene: PackedScene
 @export var playtime := 30
+@export_group("Scenes", "scene")
+@export var scene_coin: PackedScene
+@export var scene_powerup: PackedScene
 
 var level: int
 var score: int:
@@ -27,6 +29,11 @@ var playing := false
 @onready var coin_container: Node = $CoinContainer
 @onready var player_start: Position2D = $PlayerStart
 @onready var game_timer: Timer = $GameTimer
+@onready var powerup_timer: Timer = $PowerupTimer
+@onready var coin_sound: AudioStreamPlayer = $CoinSound
+@onready var powerup_sound: AudioStreamPlayer = $PowerupSound
+@onready var level_sound: AudioStreamPlayer = $LevelSound
+@onready var end_sound: AudioStreamPlayer = $EndSound
 
 
 func _ready() -> void:
@@ -41,6 +48,8 @@ func _process(_delta: float) -> void:
 		level += 1
 		time_left += 5
 		spawn_coins()
+		powerup_timer.wait_time = randf_range(5, 10)
+		powerup_timer.start()
 
 
 func new_game() -> void:
@@ -55,6 +64,7 @@ func new_game() -> void:
 
 func game_over() -> void:
 	playing = false
+	end_sound.play()
 	game_timer.stop()
 	for coin in coin_container.get_children():
 		coin.queue_free()
@@ -64,10 +74,11 @@ func game_over() -> void:
 
 func spawn_coins() -> void:
 	for i in range(4 + level):
-		var coin := coin_scene.instantiate() as Coin
+		var coin := scene_coin.instantiate() as Coin
 		coin_container.add_child(coin)
 		coin.screen_size = screen_size
 		coin.position = Vector2(randf_range(0, screen_size.x), randf_range(0, screen_size.y))
+	level_sound.play()
 
 
 func _on_game_timer_timeout() -> void:
@@ -76,9 +87,23 @@ func _on_game_timer_timeout() -> void:
 		game_over()
 
 
-func _on_player_pickup() -> void:
-	score += 1
+func _on_player_pickup(type: String) -> void:
+	match type:
+		"coin":
+			coin_sound.play()
+			score += 1
+		
+		"powerup":
+			powerup_sound.play()
+			time_left += 5
 
 
 func _on_player_hurt() -> void:
 	game_over()
+
+
+func _on_powerup_timer_timeout() -> void:
+	var powerup := scene_powerup.instantiate() as Powerup
+	add_child(powerup)
+	powerup.screen_size = screen_size
+	powerup.position = Vector2(randf_range(0, screen_size.x), randf_range(0, screen_size.y))

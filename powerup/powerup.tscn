@@ -1,0 +1,46 @@
+[gd_scene load_steps=14 format=3 uid="uid://cja0olm4230mh"]
+
+[ext_resource type="Texture2D" uid="uid://bupnypej8vpq4" path="res://powerup/textures/pow_frame_01.png" id="1_38b15"]
+[ext_resource type="Script" path="res://powerup/powerup.gd" id="1_rma5e"]
+[ext_resource type="Texture2D" uid="uid://cd4b20u78qdti" path="res://powerup/textures/pow_frame_02.png" id="2_a0sa7"]
+[ext_resource type="Texture2D" uid="uid://dj2shv1bkmy6a" path="res://powerup/textures/pow_frame_03.png" id="3_dpwdp"]
+[ext_resource type="Texture2D" uid="uid://cnpilue644hvk" path="res://powerup/textures/pow_frame_04.png" id="4_wqve7"]
+[ext_resource type="Texture2D" uid="uid://bgdhytumbwk5d" path="res://powerup/textures/pow_frame_05.png" id="5_w056t"]
+[ext_resource type="Texture2D" uid="uid://ca1j13lq8hgbd" path="res://powerup/textures/pow_frame_06.png" id="6_7l7ev"]
+[ext_resource type="Texture2D" uid="uid://djlkj2qximgab" path="res://powerup/textures/pow_frame_07.png" id="7_ous17"]
+[ext_resource type="Texture2D" uid="uid://dvdwcoxybmoh7" path="res://powerup/textures/pow_frame_08.png" id="8_l150p"]
+[ext_resource type="Texture2D" uid="uid://nfx2caxx6llw" path="res://powerup/textures/pow_frame_09.png" id="9_h0k3c"]
+[ext_resource type="Texture2D" uid="uid://je4w32m81qg4" path="res://powerup/textures/pow_frame_10.png" id="10_8q851"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ehttn"]
+animations = [{
+"frames": [ExtResource("1_38b15"), ExtResource("2_a0sa7"), ExtResource("3_dpwdp"), ExtResource("4_wqve7"), ExtResource("5_w056t"), ExtResource("6_7l7ev"), ExtResource("7_ous17"), ExtResource("8_l150p"), ExtResource("9_h0k3c"), ExtResource("10_8q851")],
+"loop": false,
+"name": &"shine",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r25h5"]
+radius = 24.0208
+
+[node name="Powerup" type="Area2D" groups=["powerups"]]
+script = ExtResource("1_rma5e")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+frames = SubResource("SpriteFrames_ehttn")
+animation = &"shine"
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_r25h5")
+
+[node name="LifetimeTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="ShineTimer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="LifetimeTimer" to="." method="_on_lifetime_timer_timeout"]
+[connection signal="timeout" from="ShineTimer" to="." method="_on_shine_timer_timeout"]

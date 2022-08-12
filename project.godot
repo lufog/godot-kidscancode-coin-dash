@@ -23,11 +23,17 @@ _global_script_classes=[{
 "class": &"Player",
 "language": &"GDScript",
 "path": "res://player/player.gd"
+}, {
+"base": "Area2D",
+"class": &"Powerup",
+"language": &"GDScript",
+"path": "res://powerup/powerup.gd"
 }]
 _global_script_class_icons={
 "Coin": "",
 "Hud": "",
-"Player": ""
+"Player": "",
+"Powerup": ""
 }
 
 [application]
