@@ -20,6 +20,7 @@ scene_powerup = ExtResource("3_h018m")
 [node name="HUD" parent="." instance=ExtResource("3_0gg7t")]
 
 [node name="Background" type="TextureRect" parent="."]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource("1_30bd8")
@@ -30,7 +31,7 @@ position = Vector2(249, 328)
 
 [node name="CoinContainer" type="Node" parent="."]
 
-[node name="PlayerStart" type="Position2D" parent="."]
+[node name="PlayerStart" type="Marker2D" parent="."]
 position = Vector2(240, 350)
 
 [node name="GameTimer" type="Timer" parent="."]
